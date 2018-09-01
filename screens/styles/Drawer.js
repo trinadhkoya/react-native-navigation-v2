@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 23,
         paddingLeft: 15,
-        flex: 1
+        flex: 1,
+
     },
     linearGradient: {
         // top: 0,

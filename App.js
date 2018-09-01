@@ -5,41 +5,64 @@
  * @format
  * @flow
  */
-import {Navigation} from 'react-native-navigation';
 
-import {registerScreens} from './screens';
-import {iconsMap, iconsLoaded} from "./utils/AppIcons";
+import React, {Component} from 'react';
+import {Platform, StyleSheet, View} from 'react-native';
+import Text from "./utils/Text";
+import fonts from "./config/fonts";
 
 
-registerScreens();
-
-iconsLoaded.then(() => {
-    Navigation.startSingleScreenApp({
-        screen: {
-            // AuthScreen
-            screen: 'example.Screen1',
-
-            navigatorButtons: {
-                leftButtons: [
-                    {
-                        icon: iconsMap['md-menu'],
-                        title: "Menu",
-                        id: "sideDrawerToggle"
-                    }
-                ]
-            },
-
-            navigatorStyle: {
-                navBarBackgroundColor: "#3F51B5",
-                navBarNoBorder: true,
-                navBarButtonColor: "white"
-            }
-        },
-        drawer: {
-            left: {
-                screen: 'example.Drawer'
-            }
-        }
-    });
+const instructions = Platform.select({
+    ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
+    android:
+        'Double tap R on your keyboard to reload,\n' +
+        'Shake or press menu button for dev menu',
 });
 
+type Props = {};
+export default class App extends Component<Props> {
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.welcome}>Welcome to React Native!</Text>
+                <Text style={styles.instructions}>To get started, edit App.js</Text>
+                <Text style={styles.instructions}>{instructions}</Text>
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+    },
+    welcome: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10,
+        ...Platform.select({
+            ios: {
+                fontWeight: 'bold',
+            },
+            android: {
+                ...fonts.android.bold,
+            },
+        }),
+    },
+    instructions: {
+        textAlign: 'center',
+        color: '#333333',
+        marginBottom: 5,
+        ...Platform.select({
+            ios: {
+                ...fonts.android.regular
+            },
+            android: {
+                ...fonts.android.regular,
+            },
+        }),
+    },
+});

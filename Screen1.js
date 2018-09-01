@@ -7,7 +7,9 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, View} from 'react-native';
+import Text from "./utils/Text";
+import fonts from "./config/fonts";
 
 
 const instructions = Platform.select({
@@ -41,10 +43,26 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         margin: 10,
+        ...Platform.select({
+            ios: {
+                fontWeight: 'bold',
+            },
+            android: {
+                ...fonts.android.bold,
+            },
+        }),
     },
     instructions: {
         textAlign: 'center',
         color: '#333333',
         marginBottom: 5,
+        ...Platform.select({
+            ios: {
+                ...fonts.android.regular
+            },
+            android: {
+                ...fonts.android.regular,
+            },
+        }),
     },
 });
