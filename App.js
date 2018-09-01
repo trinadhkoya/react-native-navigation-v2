@@ -8,10 +8,11 @@
 import {Navigation} from 'react-native-navigation';
 
 import {registerScreens} from './screens';
-import {iconsMap,iconsLoaded} from "./utils/AppIcons";
+import {iconsMap, iconsLoaded} from "./utils/AppIcons";
 
 
 registerScreens();
+
 iconsLoaded.then(() => {
     Navigation.startSingleScreenApp({
         screen: {
@@ -36,7 +37,7 @@ iconsLoaded.then(() => {
         },
         drawer: {
             left: {
-                screen: 'example.Screen2'
+                screen: 'example.Drawer'
             }
         }
     });
