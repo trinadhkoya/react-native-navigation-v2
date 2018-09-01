@@ -8,70 +8,37 @@
 import {Navigation} from 'react-native-navigation';
 
 import {registerScreens} from './screens';
+import {iconsMap,iconsLoaded} from "./utils/AppIcons";
 
-// import React, {Component} from 'react';
-// import {Platform, StyleSheet, Text, View} from 'react-native';
-// import { Navigation } from 'react-native-navigation';
-// import { registerScreens } from './screens';
-//
-// registerScreens(); // this is where you register all of your app's screens
-//
-// const instructions = Platform.select({
-//   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-//   android:
-//     'Double tap R on your keyboard to reload,\n' +
-//     'Shake or press menu button for dev menu',
-// });
-//
-// type Props = {};
-// export default class App extends Component<Props> {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text style={styles.welcome}>Welcome to React Native!</Text>
-//         <Text style={styles.instructions}>To get started, edit App.js</Text>
-//         <Text style={styles.instructions}>{instructions}</Text>
-//       </View>
-//     );
-//   }
-// }
-//
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#F5FCFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#333333',
-//     marginBottom: 5,
-//   },
-// });
 
 registerScreens();
+iconsLoaded.then(() => {
+    Navigation.startSingleScreenApp({
+        screen: {
+            // AuthScreen
+            screen: 'example.Screen1',
 
-Navigation.startTabBasedApp({
-    tabs: [
-        {
-            label: 'One',
-            screen: 'example.Screen1', // this is a registered name for a screen
-            // icon: require('../img/one.png'),
-            // selectedIcon: require('../img/one_selected.png'), // iOS only
-            title: 'Screen One'
+            navigatorButtons: {
+                leftButtons: [
+                    {
+                        icon: iconsMap['md-menu'],
+                        title: "Menu",
+                        id: "sideDrawerToggle"
+                    }
+                ]
+            },
+
+            navigatorStyle: {
+                navBarBackgroundColor: "#3F51B5",
+                navBarNoBorder: true,
+                navBarButtonColor: "white"
+            }
         },
-        {
-            label: 'Two',
-            screen: 'example.Screen1', // this is a registered name for a screen
-            // icon: require('../img/two.png'),
-            // selectedIcon: require('../img/two_selected.png'), // iOS only
-            title: 'Screen Two'
+        drawer: {
+            left: {
+                screen: 'example.Screen2'
+            }
         }
-    ]
+    });
 });
+
