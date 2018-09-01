@@ -20,7 +20,7 @@ class Drawer extends Component {
     }
 
     _openSearch() {
-        this._toggleDrawer();
+        this.toggleDrawer();
         this.props.navigator.showModal({
             screen: 'example.Screen1',
             title: 'Search'
@@ -28,15 +28,14 @@ class Drawer extends Component {
     }
 
     _goToMovies() {
-        this._toggleDrawer();
+        this.toggleDrawer();
         this.props.navigator.popToRoot({
             screen: 'example.Screen1'
         });
     }
 
     _toggleDrawer() {
-        this.props.navigator._toggleDrawer({
-            to: 'closed',
+        this.props.navigator.toggleDrawer({
             side: 'left',
             animated: true
         });
