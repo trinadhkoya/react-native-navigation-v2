@@ -10,7 +10,7 @@ Navigation.events().registerAppLaunchedListener(() => {
             sideMenu: {
                 left: {
                     component: {
-                        name: 'example.Screen1',
+                        name: 'example.Drawer',
                         passProps: {
                             text: 'This is a left side menu screen'
                         }
@@ -23,7 +23,7 @@ Navigation.events().registerAppLaunchedListener(() => {
                 },
                 right: {
                     component: {
-                        name: 'example.Drawer',
+                        name: 'example.Screen1',
                         passProps: {
                             text: 'This is a right side menu screen'
                         }

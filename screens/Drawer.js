@@ -35,7 +35,7 @@ class Drawer extends Component {
     }
 
     _toggleDrawer() {
-        this.props.navigator.toggleDrawer({
+        this.props.navigator._toggleDrawer({
             to: 'closed',
             side: 'left',
             animated: true
